@@ -5,24 +5,20 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Org Registration</title>
+  <title>Organization Registration</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
   <link href="HELPaid.ico" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -43,7 +39,7 @@
   
           <nav id="navbar" class="navbar">
             <ul>
-              <li><a class="nav-link scrollto active" href="#main">Organisation Registration</a></li>
+              <li><a class="nav-link scrollto active" href="#main">Organization Registration</a></li>
               <li><a class="nav-link scrollto" href="admin.html">Representative Registration</a></li>
               <li><a class="nav-link scrollto" href="index.html">Home</a></li>
               </li>
@@ -55,55 +51,41 @@
     </header><!-- End Header -->
 
     <main id="main">
-
-      <!-- ======= Breadcrumbs ======= -->
-      <section class="breadcrumbs">
-        <div class="container">
-
-          <div class="d-flex justify-content-between align-items-center">
-            <h2>Admin</h2>
-            <ol>
-              <li><a href="index.html">Home</a></li>
-              <li>HELP Aid Admin</li>
-            </ol>
-          </div>
-        </div>
-      </section><!-- End Breadcrumbs -->
       <section class="inner-page">
+        <h2 class="text-center">Register Organization</h2>
         <div class="container">
           <div class="card center-form">
             <div class="card-body">
-            <form action="forms/contact.php" method="post" id="orgForm"  class="php-email-form mt-4">
-            <fieldset>
-              <legend>Organisation Details</legend>
-
-              <div class="col-md-12 form-group">
-                  <label for="orgName" class="control-label">Organisation Name: </label>
+            <form action="" method="post" id="orgForm" class="mt-4">
+              <div class="row">
+                <div class="col-3 form-group">
+                  <label for="orgName" class="control-label">Organization Name: </label>
+                </div>
+                <div class="col-9">
+                  <input type="text" name="orgName" class="form-control" id="orgName">
+                </div>
               </div>
-
-              <div>
-                  <input type="text" name="orgName" class="form-control" id="orgName" placeholder="Organisation Name" required onchange="checkOrgName();">
+              
+              <div class="row">
+                <div class="col-3 form-group">
+                  <label for="address" class="control-label">Address: </label>
+                </div>
+                <div class="col-9 form-group">
+                  <textarea class="form-control" id="address" name="address" type="text"></textarea>
+                </div>
               </div>
-
-              <div class="col-md-12 form-group">
-                <label for="orgName" class="control-label">Address: </label>
+              
+              <div class="row">
+                <div class="form-group mt-3 mt-md-0">
+                  <input type="submit" value="Submit" class="btn btn-default float-end">
+                </div>
               </div>
-
-              <div class="col-md-12 form-group mt-3 mt-md-0">
-                  <textarea class="form-control"  id="fu" name="address" type="text" placeholder="Address" required onchange="checkAddress();"></textarea>
-              </div>
-              <br>
-              <div class="form-group mt-3 mt-md-0">
-                <input type="submit" value="Submit" id="registerOrgRep" class="btn btn-default float-end">
-              </div>
-
-              </div>
-            
+            </form>
           </div>
         </div>
       </div>
-    </form>
-    </main><!-- End #main -->
+    </section>
+  </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
     <footer id="footer">
@@ -142,7 +124,6 @@
     </footer><!-- End Footer -->
 
   </div>
-  </div>
 
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -153,15 +134,40 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
  
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <!--Register organization form validation-->
+  <script type="text/javascript">
+    const orgForm = document.getElementById("orgForm");
+
+    orgForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if(validateOrgForm() == true){
+        alert("Organization has been registered successfully!");
+        orgForm.reset();
+      }
+    });
+
+    function validateOrgForm(){
+      let orgName = orgForm.orgName.value;
+      let address = orgForm.address.value;
+
+      if(orgName == ""){
+        alert("Please fill in the organization name!");
+        return false;
+      }
+      else if(address == ""){
+        alert("Please fill in the address!");
+        return false;
+      }
+      else{
+        return true;
+      }
+    }
+  </script>
   
 </body>
 
